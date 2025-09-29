@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mundo SmartPhone</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Arial,sans-serif;line-height:1.6;color:#333;background:#f8f9fa}nav{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:1rem 0;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.1)}.nav-container{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem}.logo{color:#fff;font-size:2rem;font-weight:bold;display:flex;align-items:center;gap:.8rem}.logo img{width:40px;height:40px}.nav-menu{display:flex;list-style:none;gap:0}.nav-menu li{position:relative}.nav-menu a{color:#fff;text-decoration:none;font-weight:600;padding:1rem 1.5rem;display:block;transition:all .3s;border-radius:5px}.nav-menu a:hover{background:rgba(255,255,255,0.2)}.dropdown-content{display:none;position:absolute;top:100%;left:0;background:#fff;min-width:250px;box-shadow:0 8px 30px rgba(0,0,0,0.15);border-radius:10px;overflow:hidden;margin-top:.5rem}.dropdown:hover .dropdown-content{display:block}.dropdown-content a{color:#333;padding:1rem 1.5rem;border-bottom:1px solid #eee}.dropdown-content a:hover{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff}.menu-toggle{display:none;background:#fff;border:none;font-size:1.5rem;cursor:pointer;padding:.5rem;border-radius:5px;color:#667eea}.hero{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:4rem 2rem;text-align:center;color:#fff}.hero h1{font-size:2.5rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem}.hero p{font-size:1.3rem;margin-bottom:2rem}.container{max-width:1400px;margin:0 auto;padding:2rem}.page-section{display:none}.page-section.active{display:block}.btn{display:inline-block;padding:.8rem 2rem;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;text-decoration:none;border-radius:50px;font-weight:bold;transition:all .3s;border:none;cursor:pointer;margin:.5rem;box-shadow:0 5px 20px rgba(102,126,234,0.3)}.btn:hover{transform:translateY(-3px)}.btn-secondary{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%)}.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin:2rem 0}.product-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.1);transition:all .4s;position:relative}.product-card:hover{transform:translateY(-10px)}.product-card img{width:100%;height:280px;object-fit:cover}.product-badge{position:absolute;top:15px;right:15px;background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%);color:#fff;padding:.4rem 1rem;border-radius:20px;font-weight:bold;font-size:.85rem}.product-content{padding:1.5rem}.product-brand{color:#999;font-size:.85rem;margin-bottom:.5rem;text-transform:uppercase;font-weight:600}.product-content h3{color:#667eea;margin-bottom:.5rem;font-size:1.3rem}.specs{color:#666;font-size:.9rem;margin:.5rem 0}.price{color:#667eea;font-size:1.8rem;font-weight:bold;margin:1rem 0}.price-old{color:#999;text-decoration:line-through;font-size:1.1rem;margin-left:.5rem}.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin:2rem 0}.gallery-item{border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.1);height:320px;position:relative;cursor:pointer}.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.gallery-item:hover img{transform:scale(1.1)}.gallery-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(102,126,234,0.95),transparent);color:#fff;padding:1.5rem;transform:translateY(100%);transition:transform .4s}.gallery-item:hover .gallery-overlay{transform:translateY(0)}.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;margin:3rem 0}.feature-box{background:#fff;padding:2rem;border-radius:20px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.08);transition:all .3s}.feature-box:hover{transform:translateY(-8px)}.feature-icon img{width:60px;height:60px;margin-bottom:1rem}.feature-box h3{color:#667eea;margin-bottom:.8rem;font-size:1.2rem}.video-section{background:#fff;padding:2.5rem;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.08);margin:3rem 0}.video-container{max-width:900px;margin:1.5rem auto;border-radius:15px;overflow:hidden}.video-container iframe{width:100%;height:480px;border:none}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0}.contact-info{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:2.5rem;border-radius:20px}.contact-info h3{margin-bottom:1.5rem;font-size:1.8rem}.contact-item{margin:1.2rem 0;font-size:1rem;display:flex;align-items:center;gap:1rem}.contact-icon img{width:28px;height:28px;background:rgba(255,255,255,0.2);padding:.5rem;border-radius:8px}.map-section{background:#fff;padding:2rem;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.08)}.map-container{border-radius:15px;overflow:hidden;height:400px}.map-container iframe{width:100%;height:100%;border:none}.info-box{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:2.5rem;border-radius:20px;margin:2rem 0}.info-box h3{margin-bottom:1rem;font-size:1.8rem;display:flex;align-items:center;gap:1rem}.categories-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin:2rem 0}.category-card{background:#fff;padding:2rem;border-radius:20px;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.08);transition:all .3s;cursor:pointer}.category-card:hover{transform:translateY(-8px)}.category-icon img{width:70px;height:70px;margin-bottom:.8rem}.category-card h3{color:#667eea;font-size:1.3rem;margin-bottom:.5rem}footer{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;text-align:center;padding:2.5rem;margin-top:3rem}.section-title{text-align:center;color:#667eea;font-size:2.5rem;margin:2rem 0 1.5rem;font-weight:bold}.section-subtitle{text-align:center;color:#666;font-size:1.1rem;margin-bottom:2rem}@media (max-width:768px){.menu-toggle{display:block}.nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:#667eea;flex-direction:column;padding:1rem}.nav-menu.active{display:flex}.hero h1{font-size:1.8rem}.contact-grid{grid-template-columns:1fr}.video-container iframe{height:300px}}
+</style>
+</head>
+<body>
+<nav>
+<div class="nav-container">
+<div class="logo">📱 Mundo SmartPhone</div>
+<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+<ul class="nav-menu" id="navMenu">
+<li><a href="#" onclick="showPage('inicio')">Inicio</a></li>
+<li class="dropdown"><a href="#" onclick="showPage('productos');return false;">Productos ▼</a>
+<div class="dropdown-content">
+<a href="#" onclick="showPage('productos')"><img src="https://cdn-icons-png.flaticon.com/512/1554/1554490.png" style="width:20px;height:20px;margin-right:8px;vertical-align:middle">Smartphones</a>
+<a href="#" onclick="showPage('productos')"><img src="https://cdn-icons-png.flaticon.com/512/3474/3474360.png" style="width:20px;height:20px;margin-right:8px;vertical-align:middle">Laptops</a>
+<a href="#" onclick="showPage('productos')"><img src="https://cdn-icons-png.flaticon.com/512/2972/2972351.png" style="width:20px;height:20px;margin-right:8px;vertical-align:middle">Tablets</a>
+<a href="#" onclick="showPage('productos')"><img src="https://cdn-icons-png.flaticon.com/512/3845/3845874.png" style="width:20px;height:20px;margin-right:8px;vertical-align:middle">Accesorios</a>
+</div></li>
+<li><a href="#" onclick="showPage('galeria')">Galería</a></li>
+<li><a href="#" onclick="showPage('contacto')">Contacto</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-content">
+<h1><img src="https://cdn-icons-png.flaticon.com/512/1554/1554490.png" style="width:70px;height:70px;">Bienvenido a Mundo SmartPhone</h1>
+<p>La mejor tecnología al alcance de tus manos</p>
+<button class="btn" onclick="showPage('productos')">Explorar Productos</button>
+<button class="btn btn-secondary">Ofertas del Mes</button>
+<button class="btn" onclick="showPage('contacto')">Contáctanos</button>
+</div>
+</section>
+
+<div class="container">
+<section id="inicio" class="page-section active">
+<h2 class="section-title">Descubre lo Último en Tecnología</h2>
+<p class="section-subtitle">Productos de alta calidad con garantía oficial</p>
+
+<div class="info-box">
+<h3><img src="https://cdn-icons-png.flaticon.com/512/3588/3588592.png" style="width:35px;height:35px;">Promociones Especiales</h3>
+<p>Aprovecha descuentos de hasta 40% en productos seleccionados. Financiamiento sin intereses hasta 24 meses. Envío gratis en compras superiores a $800.</p>
+</div>
+
+<h3 class="section-title">Categorías Destacadas</h3>
+<div class="categories-grid">
+<div class="category-card" onclick="showPage('productos')">
+<div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/512/1554/1554490.png" alt="Smartphones"></div>
+<h3>Smartphones</h3>
+<p>iPhone, Samsung y más</p>
+</div>
+<div class="category-card" onclick="showPage('productos')">
+<div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/512/3474/3474360.png" alt="Laptops"></div>
+<h3>Laptops</h3>
+<p>Trabajo y gaming</p>
+</div>
+<div class="category-card" onclick="showPage('productos')">
+<div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/512/2972/2972351.png" alt="Tablets"></div>
+<h3>Tablets</h3>
+<p>iPad y Android</p>
+</div>
+<div class="category-card" onclick="showPage('productos')">
+<div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/512/3845/3845874.png" alt="Accesorios"></div>
+<h3>Accesorios</h3>
+<p>Audífonos y más</p>
+</div>
+</div>
+
+<h3 class="section-title">Productos Más Vendidos</h3>
+<div class="products-grid">
+<div class="product-card">
+<div class="product-badge">NUEVO</div>
+<img src="https://images.unsplash.com/photo-1592286927505-b0182417a309?w=600" alt="iPhone 15">
+<div class="product-content">
+<div class="product-brand">Apple</div>
+<h3>iPhone 15 Pro Max</h3>
+<div class="specs">256GB | Titanio Natural</div>
+<div class="price">$1,299.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<div class="product-badge">OFERTA</div>
+<img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600" alt="MacBook">
+<div class="product-content">
+<div class="product-brand">Apple</div>
+<h3>MacBook Air M2</h3>
+<div class="specs">512GB SSD | 8GB RAM</div>
+<div class="price">$1,099.00 <span class="price-old">$1,399.00</span></div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<div class="product-badge">POPULAR</div>
+<img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600" alt="Samsung">
+<div class="product-content">
+<div class="product-brand">Samsung</div>
+<h3>Galaxy S24 Ultra</h3>
+<div class="specs">512GB | Titanio Negro</div>
+<div class="price">$1,199.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+</div>
+
+<div class="features-grid">
+<div class="feature-box">
+<div class="feature-icon"><img src="https://cdn-icons-png.flaticon.com/512/3837/3837169.png" alt="Envío"></div>
+<h3>Envío Express</h3>
+<p>Entrega en 24-48 horas</p>
+</div>
+<div class="feature-box">
+<div class="feature-icon"><img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="Pago"></div>
+<h3>Pago Seguro</h3>
+<p>Métodos de pago seguros</p>
+</div>
+<div class="feature-box">
+<div class="feature-icon"><img src="https://cdn-icons-png.flaticon.com/512/3176/3176366.png" alt="Garantía"></div>
+<h3>Garantía</h3>
+<p>Hasta 2 años de protección</p>
+</div>
+<div class="feature-box">
+<div class="feature-icon"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Original"></div>
+<h3>100% Original</h3>
+<p>Productos certificados</p>
+</div>
+</div>
+
+<div class="video-section">
+<h2 style="color:#667eea;text-align:center;margin-bottom:1rem;font-size:2rem;">
+<img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" style="width:40px;height:40px;vertical-align:middle;margin-right:10px;">Lo Último en Tecnología 2024</h2>
+<p style="text-align:center;font-size:1rem;color:#666;margin-bottom:1.5rem;">Conoce las novedades del año</p>
+<div class="video-container">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+</section>
+
+<section id="productos" class="page-section">
+<h2 class="section-title">Catálogo de Productos</h2>
+<p class="section-subtitle">Encuentra el dispositivo perfecto</p>
+
+<h3 style="color:#667eea;margin:2rem 0 1.5rem;font-size:1.8rem;">Smartphones Premium</h3>
+<div class="products-grid">
+<div class="product-card">
+<div class="product-badge">NUEVO</div>
+<img src="https://images.unsplash.com/photo-1592286927505-b0182417a309?w=600" alt="iPhone">
+<div class="product-content">
+<div class="product-brand">Apple</div>
+<h3>iPhone 15 Pro Max</h3>
+<div class="specs">256GB | Titanio Azul</div>
+<div class="price">$1,299.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<div class="product-badge">OFERTA</div>
+<img src="https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=600" alt="iPhone 14">
+<div class="product-content">
+<div class="product-brand">Apple</div>
+<h3>iPhone 14 Pro</h3>
+<div class="specs">128GB | Morado</div>
+<div class="price">$899.00 <span class="price-old">$1,199.00</span></div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600" alt="Samsung">
+<div class="product-content">
+<div class="product-brand">Samsung</div>
+<h3>Galaxy S24 Ultra</h3>
+<div class="specs">512GB | Negro</div>
+<div class="price">$1,199.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<div class="product-badge">PLEGABLE</div>
+<img src="https://images.unsplash.com/photo-1583573607873-cbeba1c199e0?w=600" alt="Z Fold">
+<div class="product-content">
+<div class="product-brand">Samsung</div>
+<h3>Galaxy Z Fold 5</h3>
+<div class="specs">256GB | Negro</div>
+<div class="price">$1,599.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600" alt="Xiaomi">
+<div class="product-content">
+<div class="product-brand">Xiaomi</div>
+<h3>Xiaomi 14 Pro</h3>
+<div class="specs">512GB | Negro</div>
+<div class="price">$699.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<img src="https://images.unsplash.com/photo-1603921326210-6edd2d60ca68?w=600" alt="Huawei">
+<div class="product-content">
+<div class="product-brand">Huawei</div>
+<h3>Huawei P60 Pro</h3>
+<div class="specs">256GB | Plata</div>
+<div class="price">$799.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+</div>
+
+<h3 style="color:#667eea;margin:2rem 0 1.5rem;font-size:1.8rem;">Laptops y Tablets</h3>
+<div class="products-grid">
+<div class="product-card">
+<img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=600" alt="MacBook">
+<div class="product-content">
+<div class="product-brand">Apple</div>
+<h3>MacBook Air M2</h3>
+<div class="specs">512GB | 8GB RAM</div>
+<div class="price">$1,099.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600" alt="Laptop">
+<div class="product-content">
+<div class="product-brand">Dell</div>
+<h3>Dell XPS 15</h3>
+<div class="specs">1TB | 16GB RAM</div>
+<div class="price">$1,499.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+<div class="product-card">
+<img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?w=600" alt="iPad">
+<div class="product-content">
+<div class="product-brand">Apple</div>
+<h3>iPad Pro 12.9"</h3>
+<div class="specs">256GB | M2</div>
+<div class="price">$1,099.00</div>
+<button class="btn btn-secondary">Comprar</button>
+</div>
+</div>
+</div>
+</section>
+
+<section id="galeria" class="page-section">
+<h2 class="section-title">Galería de Productos</h2>
+<p class="section-subtitle">Explora nuestra colección</p>
+
+<div class="gallery-grid">
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400" alt="Teléfonos">
+<div class="gallery-overlay">
+<h3>Últimos Modelos</h3>
+<p>Tecnología de punta</p>
+</div>
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?w=400" alt="Accesorios">
+<div class="gallery-overlay">
+<h3>Accesorios Premium</h3>
+<p>Para tu smartphone</p>
+</div>
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400" alt="Colores">
+<div class="gallery-overlay">
+<h3>Variedad de Colores</h3>
+<p>Elige tu favorito</p>
+</div>
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400" alt="Xiaomi">
+<div class="gallery-overlay">
+<h3>Marcas Reconocidas</h3>
+<p>Calidad garantizada</p>
+</div>
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400" alt="Samsung">
+<div class="gallery-overlay">
+<h3>Innovación</h3>
+<p>Tecnología avanzada</p>
+</div>
+</div>
+<div class="gallery-item">
+<img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400" alt="iPhone">
+<div class="gallery-overlay">
+<h3>Diseño Elegante</h3>
+<p>Estilo y funcionalidad</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contacto" class="page-section">
+<h2 class="section-title">Contáctanos</h2>
+<p class="section-subtitle">Estamos aquí para ayudarte</p>
+
+<div class="contact-grid">
+<div class="contact-info">
+<h3>Información de Contacto</h3>
+<div class="contact-item">
+<div class="contact-icon"><img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" alt="Ubicación"></div>
+<div>
+<strong>Dirección:</strong><br>
+Av. Tecnología 123, San Salvador<br>
+El Salvador
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><img src="https://cdn-icons-png.flaticon.com/512/3059/3059502.png" alt="Teléfono"></div>
+<div>
+<strong>Teléfono:</strong><br>
++503 2222-3333<br>
+WhatsApp: +503 7777-8888
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"></div>
+<div>
+<strong>Email:</strong><br>
+info@mundosmartphone.com<br>
+ventas@mundosmartphone.com
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><img src="https://cdn-icons-png.flaticon.com/512/3281/3281307.png" alt="Horario"></div>
+<div>
+<strong>Horario:</strong><br>
+Lunes a Viernes: 9:00 - 18:00<br>
+Sábados: 9:00 - 14:00
+</div>
+</div>
+</div>
+
+<div class="map-section">
+<h3 style="color:#667eea;margin-bottom:1rem;">Encuéntranos</h3>
+<div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62204.22469033778!2d-89.2181911!3d13.6929403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f633a3478f1b4b9%3A0x95cfc53c1491b8b1!2sSan%20Salvador%2C%20El%20Salvador!5e0!3m2!1sen!2s!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<footer>
+<p>&copy; 2024 Mundo SmartPhone. Todos los derechos reservados.</p>
+<p>Venta de teléfonos y tecnología en El Salvador</p>
+</footer>
+
+<script>
+function showPage(pageId){
+const sections=document.querySelectorAll('.page-section');
+sections.forEach(s=>s.classList.remove('active'));
+document.getElementById(pageId).classList.add('active');
+window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleMenu(){
+document.getElementById('navMenu').classList.toggle('active');
+}
+</script>
+</body>
+</html>
