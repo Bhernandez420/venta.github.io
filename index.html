@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divina Moda - Moda y Calzado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        /* Navegación */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 5px;
+            color: #667eea;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        /* Contenedor principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .page-section {
+            display: none;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        /* Grid de Productos */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #f5576c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-content h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .product-category {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price {
+            color: #f5576c;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .price-old {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 1.2rem;
+            margin-left: 0.5rem;
+        }
+        
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        }
+        
+        .btn-outline {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        /* Video Section */
+        .video-section {
+            margin: 3rem 0;
+            text-align: center;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            height: 500px;
+        }
+        
+        /* Galería de Imágenes */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: 350px;
+            background: white;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Categorías */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .category-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .category-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .category-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-box h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        /* Mapa */
+        .map-section {
+            margin: 3rem 0;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            height: 450px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Información de Contacto */
+        .contact-info {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .contact-item {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        /* Sección de Ofertas */
+        .deals-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .deals-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #764ba2;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu a {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .video-container iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">👗 Divina Moda</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" onclick="showPage('inicio')">Inicio</a></li>
+                <li><a href="#" onclick="showPage('productos')">Productos</a></li>
+                <li><a href="#" onclick="showPage('galeria')">Galería</a></li>
+                <li><a href="#" onclick="showPage('contacto')">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>🛍️ Moda que te Define 🛍️</h1>
+        <p>Las últimas tendencias en ropa y calzado al mejor precio</p>
+        <button class="btn" onclick="showPage('productos')">Ver Colección</button>
+        <button class="btn btn-secondary" onclick="alert('🔥 ¡Ofertas hasta 50% de descuento!')">Ver Ofertas</button>
+    </section>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        <!-- PÁGINA INICIO -->
+        <section id="inicio" class="page-section active">
+            <h2 style="color: #667eea; text-align: center; font-size: 2.8rem; margin-bottom: 2rem;">Bienvenido a Divina Moda</h2>
+            
+            <div class="deals-banner">
+                <h2>🔥 ¡MEGA OFERTAS! 🔥</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 1rem;">Hasta 50% de descuento en productos seleccionados</p>
+                <button class="btn" style="background: white; color: #667eea;" onclick="showPage('productos')">Comprar Ahora</button>
+            </div>
+
+            <div class="categories">
+                <div class="category-card" onclick="alert('Ver categoría Ropa de Mujer')">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=250&fit=crop" alt="Ropa Mujer" style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="category-icon">👚</div>
+                    <h3>Ropa Mujer</h3>
+                    <p>Blusas, vestidos, pantalones y más</p>
+                    <button class="btn btn-outline" style="margin-top: 1rem;">Explorar</button>
+                </div>
+
+                <div class="category-card" onclick="alert('Ver categoría Ropa de Hombre')">
+                    <img src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?w=400&h=250&fit=crop" alt="Ropa Hombre" style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="category-icon">👔</div>
+                    <h3>Ropa Hombre</h3>
+                    <p>Camisas, jeans, sudaderas y más</p>
+                    <button class="btn btn-outline" style="margin-top: 1rem;">Explorar</button>
+                </div>
+
+                <div class="category-card" onclick="alert('Ver categoría Zapatos Mujer')">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400&h=250&fit=crop" alt="Zapatos Mujer" style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="category-icon">👠</div>
+                    <h3>Zapatos Mujer</h3>
+                    <p>Tacones, flats, botas y sandalias</p>
+                    <button class="btn btn-outline" style="margin-top: 1rem;">Explorar</button>
+                </div>
+
+                <div class="category-card" onclick="alert('Ver categoría Zapatos Hombre')">
+                    <img src="https://images.unsplash.com/photo-1542280756-74b2f55e73ab?w=400&h=250&fit=crop" alt="Zapatos Hombre" style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="category-icon">👞</div>
+                    <h3>Zapatos Hombre</h3>
+                    <p>Deportivos, formales y casuales</p>
+                    <button class="btn btn-outline" style="margin-top: 1rem;">Explorar</button>
+                </div>
+            </div>
+
+            <div class="video-section">
+                <h2 style="color: #667eea; margin-bottom: 1rem;">Tendencias de Moda 2025</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: #666;">Descubre las últimas tendencias y cómo combinar tu ropa</p>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dril0vZzVXw" title="Tendencias de Moda" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <h3 style="color: #667eea; text-align: center; margin: 3rem 0 2rem; font-size: 2rem;">Productos Destacados</h3>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">NUEVO</div>
+                    <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500" alt="Vestido elegante">
+                    <div class="product-content">
+                        <div class="product-category">Ropa Mujer</div>
+                        <h3>Vestido Casual Elegante</h3>
+                        <p>Perfecto para cualquier ocasión, tela suave y cómoda</p>
+                        <div class="price">$45.00</div>
+                        <button class="btn btn-secondary">Agregar al Carrito</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge">-30%</div>
+                    <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500" alt="Zapatos deportivos">
+                    <div class="product-content">
+                        <div class="product-category">Zapatos Unisex</div>
+                        <h3>Tenis Deportivos Premium</h3>
+                        <p>Tecnología de amortiguación, perfectos para correr</p>
+                        <div class="price">$70.00 <span class="price-old">$100.00</span></div>
+                        <button class="btn btn-secondary">Agregar al Carrito</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge">HOT</div>
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500" alt="Camisa hombre">
+                    <div class="product-content">
+                        <div class="product-category">Ropa Hombre</div>
+                        <h3>Camisa Slim Fit</h3>
+                        <p>Diseño moderno, ideal para el trabajo o eventos</p>
+                        <div class="price">$35.00</div>
+                        <button class="btn btn-secondary">Agregar al Carrito</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-box">
+                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=300&h=200&fit=crop" alt="Envío" style="width: 100%; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Envío Gratis</h3>
+                    <p>En compras mayores a $50 a todo El Salvador</p>
+                </div>
+                
+                <div class="feature-box">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=300&h=200&fit=crop" alt="Pago" style="width: 100%; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="feature-icon">💳</div>
+                    <h3>Pago Seguro</h3>
+                    <p>Múltiples métodos de pago disponibles</p>
+                </div>
+                
+                <div class="feature-box">
+                    <img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=300&h=200&fit=crop" alt="Cambios" style="width: 100%; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Cambios Fáciles</h3>
+                    <p>30 días para cambios y devoluciones</p>
+                </div>
+
+                <div class="feature-box">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=300&h=200&fit=crop" alt="Calidad" style="width: 100%; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Calidad Premium</h3>
+                    <p>Productos de las mejores marcas</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PÁGINA PRODUCTOS -->
+        <section id="productos" class="page-section">
+            <h2 style="color: #667eea; text-align: center; font-size: 2.8rem; margin-bottom: 2rem;">Nuestra Colección</h2>
+            
+            <div class="info-box">
+                <h3>🎉 Ofertas Especiales de Temporada</h3>
+                <p>Aprovecha nuestros descuentos de hasta 50% en productos seleccionados. ¡Por tiempo limitado!</p>
+            </div>
+
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem; font-size: 1.8rem;">👚 Ropa para Mujer</h3>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">-40%</div>
+                    <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=500" alt="Blusa mujer">
+                    <div class="product-content">
+                        <div class="product-category">Blusas</div>
+                        <h3>Blusa Floral Primavera</h3>
+                        <p>Tela ligera y fresca, perfecta para el día a día</p>
+                        <div class="price">$30.00 <span class="price-old">$50.00</span></div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500" alt="Pantalón mujer">
+                    <div class="product-content">
+                        <div class="product-category">Pantalones</div>
+                        <h3>Jeans High Waist</h3>
+                        <p>Corte moderno, talla perfecta, mezclilla premium</p>
+                        <div class="price">$55.00</div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge">NUEVO</div>
+                    <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500" alt="Vestido largo">
+                    <div class="product-content">
+                        <div class="product-category">Vestidos</div>
+                        <h3>Vestido Largo Elegante</h3>
+                        <p>Para eventos especiales, disponible en varios colores</p>
+                        <div class="price">$80.00</div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem; font-size: 1.8rem;">👔 Ropa para Hombre</h3>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=500" alt="Camiseta hombre">
+                    <div class="product-content">
+                        <div class="product-category">Camisetas</div>
+                        <h3>Camiseta Premium Algodón</h3>
+                        <p>100% algodón, ajuste perfecto, varios colores</p>
+                        <div class="price">$25.00</div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge">-25%</div>
+                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=500" alt="Sudadera hombre">
+                    <div class="product-content">
+                        <div class="product-category">Sudaderas</div>
+                        <h3>Hoodie Urban Style</h3>
+                        <p>Capucha ajustable, bolsillo canguro, súper cómodo</p>
+                        <div class="price">$45.00 <span class="price-old">$60.00</span></div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500" alt="Pantalón hombre">
+                    <div class="product-content">
+                        <div class="product-category">Pantalones</div>
+                        <h3>Chinos Slim Fit</h3>
+                        <p>Estilo casual elegante, varios colores disponibles</p>
+                        <div class="price">$50.00</div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #667eea; margin: 3rem 0 1.5rem; font-size: 1.8rem;">👠👞 Calzado</h3>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-badge">BESTSELLER</div>
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500" alt="Tacones mujer">
+                    <div class="product-content">
+                        <div class="product-category">Zapatos Mujer</div>
+                        <h3>Tacones Elegantes</h3>
+                        <p>Tacón de 8cm, cómodos para toda la noche</p>
+                        <div class="price">$65.00</div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=500" alt="Botas mujer">
+                    <div class="product-content">
+                        <div class="product-category">Zapatos Mujer</div>
+                        <h3>Botas Casuales</h3>
+                        <p>Para temporada fría, material resistente al agua</p>
+                        <div class="price">$85.00</div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-badge">-35%</div>
+                    <img src="https://images.unsplash.com/photo-1449505278894-297fdb3edbc1?w=500" alt="Zapatos formales hombre">
+                    <div class="product-content">
+                        <div class="product-category">Zapatos Hombre</div>
+                        <h3>Zapatos Formales Oxford</h3>
+                        <p>Perfectos para oficina o eventos formales</p>
+                        <div class="price">$75.00 <span class="price-old">$115.00</span></div>
+                        <button class="btn btn-secondary">Comprar Ahora</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 3rem;">
+                <h3>📏 Guía de Tallas</h3>
+                <p>¿No estás seguro de tu talla? Contáctanos por WhatsApp y te ayudamos a encontrar el ajuste perfecto</p>
+                <button class="btn" style="margin-top: 1rem;" onclick="alert('WhatsApp: +503 7777-8888')">Solicitar Guía de Tallas</button>
+            </div>
+        </section>
+
+        <!-- PÁGINA GALERÍA -->
+        <section id="galeria" class="page-section">
+            <h2 style="color: #667eea; text-align: center; font-size: 2.8rem; margin-bottom: 2rem;">Galería de Moda</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Inspírate con nuestros looks y combinaciones</p>
+            
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" alt="Look casual mujer">
+                    <div class="gallery-overlay">
+                        <h3>Look Casual Chic</h3>
+                        <p>Perfecto para el día a día</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400" alt="Outfit elegante">
+                    <div class="gallery-overlay">
+                        <h3>Elegancia Total</h3>
+                        <p>Para eventos especiales</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400" alt="Street style">
+                    <div class="gallery-overlay">
+                        <h3>Street Style</h3>
+                        <p>Estilo urbano moderno</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1537832816519-689ad163238b?w=400" alt="Zapatos tendencia">
+                    <div class="gallery-overlay">
+                        <h3>Tendencias en Calzado</h3>
+                        <p>Lo más in de la temporada</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1467043237213-65f2da53396f?w=400" alt="Moda masculina">
+                    <div class="gallery-overlay">
+                        <h3>Estilo Masculino</h3>
+                        <p>Elegancia y comodidad</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400" alt="Accesorios">
+                    <div class="gallery-overlay">
+                        <h3>Accesorios de Moda</h3>
+                        <p>Complementa tu look</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400" alt="Colección verano">
+                    <div class="gallery-overlay">
+                        <h3>Colección Verano</h3>
+                        <p>Frescura y estilo</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400" alt="Shopping">
+                    <div class="gallery-overlay">
+                        <h3>Nueva Colección</h3>
+                        <p>Recién llegados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="deals-banner" style="margin-top: 3rem;">
+                <h2>📸 Comparte tu Estilo</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Etiquétanos en Instagram con #DivinaModa</p>
+                <button class="btn" style="background: white; color: #667eea;">Seguir en Instagram</button>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">¿Te gustó algo?</h3>
+                <button class="btn" onclick="showPage('productos')">Ver Todos los Productos</button>
+                <button class="btn btn-secondary" onclick="showPage('contacto')">Hacer un Pedido</button>
+            </div>
+        </section>
+
+        <!-- PÁGINA CONTACTO -->
+        <section id="contacto" class="page-section">
+            <h2 style="color: #667eea; text-align: center; font-size: 2.8rem; margin-bottom: 2rem;">Contáctanos</h2>
+            
+            <div class="contact-info">
+                <h3>📍 Información de Contacto</h3>
+                <div class="contact-item">
+                    <strong>📞 Teléfono:</strong> +503 2345-6789
+                </div>
+                <div class="contact-item">
+                    <strong>📱 WhatsApp:</strong> +503 7777-8888
+                </div>
+                <div class="contact-item">
+                    <strong>📧 Email:</strong> info@divinamoda.com
+                </div>
+                <div class="contact-item">
+                    <strong>📷 Instagram:</strong> @divinamoda_sv
+                </div>
+                <div class="contact-item">
+                    <strong>⏰ Horario de Atención:</strong> Lunes a Sábado: 9:00 AM - 7:00 PM | Domingo: 10:00 AM - 5:00 PM
+                </div>
+                <div class="contact-item">
+                    <strong>📍 Dirección:</strong> San Salvador, El Salvador
+                </div>
+            </div>
+
+            <div class="features" style="margin: 3rem 0;">
+                <div class="feature-box">
+                    <img src="https://images.unsplash.com/photo-1558769132-cb1aea3c8dfd?w=300&h=200&fit=crop" alt="Tienda física" style="width: 100%; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="feature-icon">🏪</div>
+                    <h3>Visita Nuestra Tienda</h3>
+                    <p>Ven a probarte nuestros productos y recibe asesoría personalizada</p>
+                </div>
+                
+                <div class="feature-box">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=300&h=200&fit=crop" alt="Compra online" style="width: 100%; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="feature-icon">💻</div>
+                    <h3>Compra Online</h3>
+                    <p>Ordena por WhatsApp, web o redes sociales desde casa</p>
+                </div>
+                
+                <div class="feature-box">
+                    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&h=200&fit=crop" alt="Asesoría" style="width: 100%; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                    <div class="feature-icon">👗</div>
+                    <h3>Asesoría de Estilo</h3>
+                    <p>Te ayudamos a encontrar el look perfecto para ti</p>
+                </div>
+            </div>
+
+            <div class="map-section">
+                <h3 style="color: #667eea; margin-bottom: 1rem; text-align: center;">📍 Encuéntranos Aquí</h3>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62349.47326508314!2d-89.22356873124998!3d13.698889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f633054428c7c89%3A0xb53b7d39c9e0c3b!2sSan%20Salvador%2C%20El%20Salvador!5e0!3m2!1ses!2ssv!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 3rem 0;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Haz tu Pedido Ahora</h3>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">Contáctanos por tu medio preferido</p>
+                <button class="btn btn-secondary" onclick="alert('WhatsApp: +503 7777-8888\n¡Envíanos un mensaje!')">💬 WhatsApp</button>
+                <button class="btn" onclick="alert('Llamar: +503 2345-6789')">📞 Llamar</button>
+                <button class="btn btn-outline" onclick="alert('Instagram: @divinamoda_sv')">📷 Instagram</button>
+                <button class="btn btn-outline" onclick="alert('Email: info@divinamoda.com')">📧 Email</button>
+            </div>
+
+            <div class="info-box">
+                <h3>❓ Preguntas Frecuentes</h3>
+                <p><strong>¿Tienen tienda física?</strong> Sí, estamos en San Salvador. Contáctanos para la dirección exacta.</p>
+                <p><strong>¿Cómo hago un pedido?</strong> Puedes ordenar por WhatsApp, Instagram o visitarnos en tienda.</p>
+                <p><strong>¿Cuánto tarda el envío?</strong> 24-48 horas en San Salvador y 2-3 días al interior del país.</p>
+                <p><strong>¿Aceptan devoluciones?</strong> Sí, aceptamos cambios y devoluciones dentro de los 30 días.</p>
+                <p><strong>¿Qué métodos de pago aceptan?</strong> Efectivo, tarjetas, transferencias y pagos contra entrega.</p>
+            </div>
+
+            <div class="deals-banner" style="margin-top: 3rem;">
+                <h2>🎁 Suscríbete a Nuestro Newsletter</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Recibe ofertas exclusivas y entérate de las nuevas colecciones</p>
+                <button class="btn" style="background: white; color: #667eea;">Suscribirme</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Divina Moda. Todos los derechos reservados.</p>
+        <p>Tu estilo, nuestra pasión 👗👠</p>
+        <div style="margin-top: 1.5rem;">
+            <button class="btn" style="margin: 0.5rem;" onclick="alert('Facebook: @DivinaModaSV')">Facebook</button>
+            <button class="btn" style="margin: 0.5rem;" onclick="alert('Instagram: @divinamoda_sv')">Instagram</button>
+            <button class="btn" style="margin: 0.5rem;" onclick="alert('TikTok: @divinamoda_sv')">TikTok</button>
+            <button class="btn" style="margin: 0.5rem;" onclick="alert('WhatsApp: +503 7777-8888')">WhatsApp</button>
+        </div>
+    </footer>
+
+    <script>
+        // Navegación entre páginas
+        function showPage(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Cerrar menú en móvil
+            if (window.innerWidth <= 768) {
+                document.getElementById('navMenu').classList.remove('active');
+            }
+            
+            // Scroll al inicio
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Toggle menú móvil
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('.nav-container');
+            const menu = document.getElementById('navMenu');
+            
+            if (!nav.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
